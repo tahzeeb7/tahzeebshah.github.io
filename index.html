@@ -4,739 +4,213 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muhammad Tahzeeb Shah | Mathematician & AI Engineer</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+/* ===== RESET ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#050d1a;
-  --bg2:#080f1f;
-  --bg3:#0a1628;
   --card:#0e1c30;
-  --card2:#111f35;
   --border:rgba(100,160,255,0.12);
-  --border2:rgba(100,160,255,0.22);
-  --blue:#3b82f6;
-  --blue2:#60a5fa;
-  --blue3:#93c5fd;
-  --cyan:#06b6d4;
-  --cyan2:#22d3ee;
-  --gold:#f59e0b;
-  --gold2:#fcd34d;
-  --green:#10b981;
-  --purple:#8b5cf6;
   --text:#e8f0fe;
   --text2:#94a3b8;
-  --text3:#64748b;
-  --glow:rgba(59,130,246,0.15);
-  --glow2:rgba(6,182,212,0.1);
+  --blue:#3b82f6;
+  --cyan:#06b6d4;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-
-/* SCROLLBAR */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
-
-/* CANVAS BACKGROUND */
-#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--blue2);transition:width 0.3s}
-.nav-links a:hover{color:var(--text)}
-.nav-links a:hover::after{width:100%}
-.nav-hire{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:9px 22px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.2s;letter-spacing:0.3px}
-.nav-hire:hover{opacity:0.85}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:100px 6% 60px;position:relative;z-index:1}
-.hero-inner{display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center;width:100%;max-width:1200px;margin:0 auto}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px}
-.eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0.4)}50%{box-shadow:0 0 0 8px rgba(34,211,238,0)}}
-.eyebrow-text{font-size:13px;font-weight:500;color:var(--cyan2);letter-spacing:1.5px;text-transform:uppercase}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(42px,5.5vw,72px);font-weight:800;line-height:1.05;margin-bottom:16px;letter-spacing:-1px}
-.hero h1 .line1{color:var(--text)}
-.hero h1 .line2{background:linear-gradient(135deg,var(--blue2) 0%,var(--cyan2) 50%,var(--blue3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-typed{font-size:18px;font-weight:500;color:var(--blue3);margin-bottom:20px;min-height:28px}
-.cursor{display:inline-block;width:2px;height:20px;background:var(--blue2);vertical-align:middle;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.hero-desc{font-size:16px;color:var(--text2);line-height:1.8;max-width:540px;margin-bottom:36px}
-.hero-desc strong{color:var(--text);font-weight:500}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
-.cta-main{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:14px 30px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.3s;display:flex;align-items:center;gap:8px}
-.cta-main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(59,130,246,0.35)}
-.cta-sec{border:1px solid var(--border2);color:var(--text);padding:14px 30px;border-radius:8px;font-size:15px;font-weight:500;text-decoration:none;transition:all 0.3s}
-.cta-sec:hover{background:rgba(59,130,246,0.08);border-color:var(--blue2)}
-.hero-stats{display:flex;gap:32px}
-.hstat{text-align:left}
-.hstat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hstat-label{font-size:12px;color:var(--text3);font-weight:500;letter-spacing:0.5px;margin-top:2px}
-
-/* HERO RIGHT CARD */
-.hero-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;overflow:hidden}
-.hero-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(59,130,246,0.12) 0%,transparent 70%)}
-.hero-card::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(6,182,212,0.08) 0%,transparent 70%)}
-.hcard-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#fff;margin:0 auto 20px;border:3px solid rgba(96,165,250,0.3);position:relative;z-index:1}
-.hcard-name{text-align:center;font-weight:700;font-size:16px;color:var(--text);margin-bottom:4px;position:relative;z-index:1}
-.hcard-sub{text-align:center;font-size:12px;color:var(--text2);margin-bottom:22px;position:relative;z-index:1}
-.hcard-divider{height:1px;background:var(--border);margin-bottom:18px}
-.hcard-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(100,160,255,0.06)}
-.hcard-row:last-child{border-bottom:none}
-.hcard-key{font-size:12px;color:var(--text3);font-weight:500}
-.hcard-val{font-size:12px;color:var(--text2);font-weight:600}
-.hcard-val.available{color:var(--green)}
-.hcard-val.available::before{content:'● ';font-size:10px}
-.hcard-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;position:relative;z-index:1}
-.hbadge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid}
-.hbadge.blue{background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);color:var(--blue3)}
-.hbadge.cyan{background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.3);color:var(--cyan2)}
-.hbadge.gold{background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:var(--gold2)}
-.hbadge.purple{background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:#c4b5fd}
-.hbadge.green{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3);color:#6ee7b7}
-
-/* SECTION COMMON */
-.section{padding:90px 6%;position:relative;z-index:1}
-.section-inner{max-width:1200px;margin:0 auto}
-.sec-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.sec-line{width:40px;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
-.sec-tag{font-size:12px;font-weight:600;color:var(--blue3);letter-spacing:1.5px;text-transform:uppercase}
-.sec-title{font-family:'Syne',sans-serif;font-size:clamp(30px,3.5vw,44px);font-weight:800;color:var(--text);margin-bottom:12px;letter-spacing:-0.5px}
-.sec-sub{font-size:16px;color:var(--text2);max-width:560px;line-height:1.75;margin-bottom:56px}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.about-text p{font-size:15px;color:var(--text2);line-height:1.85;margin-bottom:18px}
-.about-text strong{color:var(--text);font-weight:600}
-.math-quote{background:var(--card);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:20px 24px;margin:28px 0;font-style:italic;color:var(--text2);font-size:15px}
-.math-quote span{display:block;font-size:13px;color:var(--text3);margin-top:8px;font-style:normal}
-.about-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.ahl{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;transition:border-color 0.2s}
-.ahl:hover{border-color:var(--border2)}
-.ahl-icon{font-size:20px}
-.ahl-text{font-size:13px;font-weight:500;color:var(--text)}
-.edu-timeline{display:flex;flex-direction:column;gap:16px}
-.edu-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:all 0.3s}
-.edu-item:hover{border-color:var(--border2);transform:translateX(4px)}
-.edu-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--blue),var(--cyan))}
-.edu-year{font-size:11px;font-weight:600;color:var(--blue3);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-.edu-deg{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
-.edu-uni{font-size:13px;color:var(--text2);margin-bottom:10px}
-.edu-tags{display:flex;flex-wrap:wrap;gap:6px}
-.etag{font-size:11px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);color:var(--blue3);padding:3px 9px;border-radius:4px}
-
-/* SKILLS */
-.skills-section{background:var(--bg2)}
-.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all 0.3s;cursor:default;position:relative;overflow:hidden}
-.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity 0.3s}
-.skill-card.blue::before{background:linear-gradient(90deg,var(--blue),var(--cyan));opacity:1}
-.skill-card.cyan::before{background:linear-gradient(90deg,var(--cyan),#06b6d4);opacity:1}
-.skill-card.gold::before{background:linear-gradient(90deg,var(--gold),#f59e0b);opacity:1}
-.skill-card.purple::before{background:linear-gradient(90deg,var(--purple),#8b5cf6);opacity:1}
-.skill-card.green::before{background:linear-gradient(90deg,var(--green),#10b981);opacity:1}
-.skill-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
-.sk-icon-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
-.sk-icon-wrap.blue{background:rgba(59,130,246,0.15)}
-.sk-icon-wrap.cyan{background:rgba(6,182,212,0.15)}
-.sk-icon-wrap.gold{background:rgba(245,158,11,0.15)}
-.sk-icon-wrap.purple{background:rgba(139,92,246,0.15)}
-.sk-icon-wrap.green{background:rgba(16,185,129,0.15)}
-.sk-icon-wrap.red{background:rgba(239,68,68,0.15)}
-.skill-card h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px}
-.skill-card p{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:14px}
-.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
-.stag{font-size:11px;font-weight:500;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:var(--text2)}
-.skill-level{display:flex;align-items:center;gap:8px;margin-top:12px}
-.level-bar{flex:1;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
-.level-fill{height:100%;border-radius:2px;transition:width 1s ease}
-.level-pct{font-size:11px;font-weight:600;color:var(--text3);min-width:30px}
-
-/* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.proj-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s}
-.proj-card:hover{border-color:var(--border2);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.4)}
-.proj-banner{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
-.proj-banner::before{content:'';position:absolute;inset:0;background:inherit;filter:brightness(0.7)}
-.proj-banner-icon{position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))}
-.pb1{background:linear-gradient(135deg,#0a1628,#1a3a6e)}
-.pb2{background:linear-gradient(135deg,#0a1a10,#1a5030)}
-.pb3{background:linear-gradient(135deg,#1a0a28,#3a1a6e)}
-.pb4{background:linear-gradient(135deg,#1a1000,#4a2e00)}
-.proj-body{padding:24px}
-.proj-label{font-size:11px;font-weight:700;color:var(--blue3);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}
-.proj-card h4{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.3}
-.proj-card p{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:16px}
-.proj-tags{display:flex;flex-wrap:wrap;gap:6px}
-.ptag2{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);color:var(--blue3)}
-
-/* SERVICES */
-.services-section{background:var(--bg2)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.svc-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
-.svc-card:hover{border-color:var(--border2);transform:translateY(-4px)}
-.svc-glow{position:absolute;top:0;right:0;width:100px;height:100px;border-radius:50%;opacity:0;transition:opacity 0.3s}
-.svc-card:hover .svc-glow{opacity:1}
-.svc-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:rgba(255,255,255,0.04);position:absolute;top:12px;right:18px;line-height:1}
-.svc-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;position:relative;z-index:1}
-.svc-card h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
-.svc-card p{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:16px}
-.svc-link{font-size:13px;font-weight:600;color:var(--blue3);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap 0.2s}
-.svc-link:hover{gap:10px}
-
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
-.contact-left h3{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text);margin-bottom:14px;line-height:1.2}
-.contact-left p{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:36px}
-.contact-cards{display:flex;flex-direction:column;gap:12px}
-.cc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color 0.2s}
-.cc:hover{border-color:var(--border2)}
-.cc-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.cc-label{font-size:11px;color:var(--text3);font-weight:500;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.8px}
-.cc-val{font-size:14px;font-weight:500;color:var(--text)}
-.contact-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.fg{margin-bottom:18px}
-.fg label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:7px;text-transform:uppercase;letter-spacing:0.8px}
-.fg input,.fg textarea,.fg select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s}
-.fg input:focus,.fg textarea:focus{border-color:var(--blue2);background:rgba(59,130,246,0.04)}
-.fg textarea{min-height:110px;resize:vertical}
-.fg input::placeholder,.fg textarea::placeholder{color:var(--text3)}
-.submit-btn{width:100%;background:linear-gradient(135deg,var(--blue),var(--cyan));border:none;color:#fff;padding:14px;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.3s;letter-spacing:0.3px}
-.submit-btn:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 10px 30px rgba(59,130,246,0.3)}
-
-/* FOOTER */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 6%;position:relative;z-index:1}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-.footer-logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.footer-text{font-size:13px;color:var(--text3);text-align:center}
-.footer-text span{color:var(--blue3)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color 0.2s}
-.footer-links a:hover{color:var(--blue2)}
-
-/* DIVIDER */
-.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 6%}
-
-/* ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(24px);transition:all 0.7s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-card{display:none}
-  .about-grid,.contact-grid{grid-template-columns:1fr}
-  .skills-grid,.services-grid{grid-template-columns:1fr 1fr}
-  .projects-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .about-highlights{grid-template-columns:1fr 1fr}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
 }
-@media(max-width:560px){
-  .skills-grid,.services-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .hero-stats{gap:20px}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  height:65px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 5%;
+  background:rgba(5,13,26,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-weight:800;font-size:20px}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:13px}
+.nav-links a:hover{color:white}
+
+/* ===== HERO ===== */
+.hero{
+  padding:120px 6% 60px;
+}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:42px;
+}
+.hero h1 span{
+  color:var(--blue);
+}
+.hero p{
+  color:var(--text2);
+  margin-top:10px;
+  max-width:600px;
+}
+
+/* ===== SECTION ===== */
+.section{
+  padding:80px 6%;
+}
+.title{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+/* ===== PROJECTS ===== */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+.card{
+  background:var(--card);
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+.card h3{margin-bottom:10px}
+
+/* ===== CONTACT ===== */
+.contact{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  background:transparent;
+  border:1px solid var(--border);
+  color:white;
+}
+
+button{
+  padding:12px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  border:none;
+  color:white;
+  width:100%;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--border);
+  color:var(--text2);
+}
+
+@media(max-width:768px){
+  .contact{grid-template-columns:1fr}
 }
 </style>
 </head>
-<body>
 
-<canvas id="bg-canvas"></canvas>
+<body>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">MTS</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-hire">Hire Me →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-text fade-in">
-      <div class="hero-eyebrow">
-        <div class="eyebrow-dot"></div>
-        <div class="eyebrow-text">Available for opportunities</div>
-      </div>
-      <h1>
-        <div class="line1">Muhammad</div>
-        <div class="line2">Tahzeeb Shah</div>
-      </h1>
-      <div class="hero-typed"><span id="typed-text"></span><span class="cursor"></span></div>
-      <p class="hero-desc">
-        BS Mathematics graduate bridging the gap between <strong>pure mathematical theory</strong> and <strong>real-world AI solutions</strong>. From cryptographic number theory to deep learning architectures — precision and rigour in every line of code.
-      </p>
-      <div class="hero-ctas">
-        <a href="#projects" class="cta-main">View My Work ↓</a>
-        <a href="#contact" class="cta-sec">Get In Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">9+</div><div class="hstat-label">Core Skills</div></div>
-        <div class="hstat"><div class="hstat-num">BS</div><div class="hstat-label">Mathematics</div></div>
-        <div class="hstat"><div class="hstat-num">100%</div><div class="hstat-label">Dedicated</div></div>
-      </div>
-    </div>
-    <div class="hero-card fade-in">
-      <div class="hcard-avatar">MTS</div>
-      <div class="hcard-name">Muhammad Tahzeeb Shah</div>
-      <div class="hcard-sub"> Pakistan 🇵🇰</div>
-      <div class="hcard-divider"></div>
-      <div class="hcard-row"><span class="hcard-key">Degree</span><span class="hcard-val">BS Mathematics</span></div>
-      <div class="hcard-row"><span class="hcard-key">Focus</span><span class="hcard-val">AI & Data Science</span></div>
-      <div class="hcard-row"><span class="hcard-key">Location</span><span class="hcard-val">pakistan, PK</span></div>
-      <div class="hcard-row"><span class="hcard-key">Status</span><span class="hcard-val available">Available</span></div>
-      <div class="hcard-badges">
-        <span class="hbadge blue">Python</span>
-        <span class="hbadge cyan">ML/DL</span>
-        <span class="hbadge gold">Math</span>
-        <span class="hbadge purple">Agentic AI</span>
-        <span class="hbadge green">Data</span>
-        <span class="hbadge blue">Crypto</span>
-        <span class="hbadge cyan">MATLAB</span>
-        <span class="hbadge gold">Game Theory</span>
-      </div>
-    </div>
-  </div>
+  <h1>Muhammad <span>Tahzeeb Shah</span></h1>
+  <p>
+    BS Mathematics graduate from Pakistan focused on Artificial Intelligence, Machine Learning, and Applied Mathematics.
+  </p>
 </section>
 
 <!-- ABOUT -->
 <section class="section" id="about">
-  <div class="section-inner">
-    <div class="sec-eyebrow"><div class="sec-line"></div><div class="sec-tag">About Me</div></div>
-    <div class="sec-title">Where Equations Meet Intelligence</div>
-    <div class="about-grid fade-in">
-      <div class="about-text">
-        <p>I'm a <strong>BS Mathematics graduate</strong> from pakistan with a deep passion for applying mathematical rigour to the frontier of artificial intelligence, data science, and cryptography. My academic journey has given me a rare theoretical foundation that most data scientists lack.</p>
-        <p>I believe that the best AI systems are built by those who truly understand the <strong>mathematics beneath the surface</strong> — the linear algebra driving neural networks, the probability theory underpinning Bayesian inference, and the game-theoretic models shaping multi-agent systems.</p>
-        <div class="math-quote">
-          "Mathematics is the language in which God has written the universe — and I use it to write intelligent systems."
-          <span>— Muhammad Tahzeeb Shah</span>
-        </div>
-        <p>From building ML pipelines to designing cryptographic protocols, I bring both <strong>theoretical depth</strong> and <strong>practical coding ability</strong> to every project I work on.</p>
-        <div class="about-highlights">
-          <div class="ahl"><span class="ahl-icon">🐍</span><span class="ahl-text">Python Developer</span></div>
-          <div class="ahl"><span class="ahl-icon">🤖</span><span class="ahl-text">ML & Deep Learning</span></div>
-          <div class="ahl"><span class="ahl-icon">🔐</span><span class="ahl-text">Cryptography</span></div>
-          <div class="ahl"><span class="ahl-icon">📊</span><span class="ahl-text">BI Dashboards</span></div>
-          <div class="ahl"><span class="ahl-icon">🎲</span><span class="ahl-text">Game Theory</span></div>
-          <div class="ahl"><span class="ahl-icon">⚡</span><span class="ahl-text">Agentic AI</span></div>
-        </div>
-      </div>
-      <div class="edu-timeline">
-        <div class="edu-item">
-          <div class="edu-year">2020 – 2024 · Recently Graduated</div>
-          <div class="edu-deg">BSc Mathematics</div>
-          <div class="edu-uni">University · Karachi, Pakistan</div>
-          <div class="edu-tags">
-            <span class="etag">Real Analysis</span><span class="etag">Linear Algebra</span><span class="etag">Cryptography</span><span class="etag">Game Theory</span><span class="etag">Fuzzy Logic</span><span class="etag">Numerical Methods</span><span class="etag">ML Theory</span>
-          </div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-year">FSC Pre-Engineering</div>
-          <div class="edu-deg">Higher Secondary Certificate</div>
-          <div class="edu-uni">,Bahauddin Zakariya University, Multan
- Pakistan</div>
-          <div class="edu-tags">
-            <span class="etag">Physics</span><span class="etag">Chemistry</span><span class="etag">Advanced Math</span>
-          </div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-year">Matriculation</div>
-          <div class="edu-deg">Secondary School Certificate</div>
-          <div class="edu-uni">Pakistan</div>
-          <div class="edu-tags">
-            <span class="etag">Science</span><span class="etag">Mathematics</span><span class="etag">Distinction</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="title">About Me</div>
+  <p>
+    I am a BS Mathematics student from Pakistan with strong interest in AI, Data Science, Cryptography, and Machine Learning.
+    I combine mathematical theory with real-world AI systems.
+  </p>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- SKILLS -->
-<section class="section skills-section" id="skills">
-  <div class="section-inner">
-    <div class="sec-eyebrow"><div class="sec-line"></div><div class="sec-tag">Expertise</div></div>
-    <div class="sec-title">Skills & Technologies</div>
-    <p class="sec-sub">A powerful technical stack rooted in mathematical theory — from classical analysis to modern agentic AI systems.</p>
-    <div class="skills-grid">
-      <div class="skill-card blue fade-in">
-        <div class="sk-icon-wrap blue">📈</div>
-        <h4>Data Analysis</h4>
-        <p>Extracting meaningful insights from complex, high-dimensional datasets using statistical methods, EDA, and advanced visualisation.</p>
-        <div class="skill-tags"><span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Matplotlib</span><span class="stag">Seaborn</span><span class="stag">SQL</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:90%;background:linear-gradient(90deg,var(--blue),var(--cyan))"></div></div><div class="level-pct">90%</div></div>
-      </div>
-      <div class="skill-card cyan fade-in">
-        <div class="sk-icon-wrap cyan">🐍</div>
-        <h4>Python Development</h4>
-        <p>Building clean, efficient Python applications, automation pipelines, data tools, and backend scripts with professional code quality.</p>
-        <div class="skill-tags"><span class="stag">Python</span><span class="stag">OOP</span><span class="stag">FastAPI</span><span class="stag">Automation</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:88%;background:linear-gradient(90deg,var(--cyan),var(--blue2))"></div></div><div class="level-pct">88%</div></div>
-      </div>
-      <div class="skill-card blue fade-in">
-        <div class="sk-icon-wrap blue">🤖</div>
-        <h4>Machine Learning</h4>
-        <p>Designing and evaluating supervised, unsupervised, and ensemble learning models grounded in solid mathematical theory.</p>
-        <div class="skill-tags"><span class="stag">Scikit-learn</span><span class="stag">XGBoost</span><span class="stag">Feature Eng.</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:85%;background:linear-gradient(90deg,var(--blue),var(--cyan))"></div></div><div class="level-pct">85%</div></div>
-      </div>
-      <div class="skill-card purple fade-in">
-        <div class="sk-icon-wrap purple">🧠</div>
-        <h4>Deep Learning</h4>
-        <p>Building neural network architectures for vision, NLP, and time-series — from theory to deployment.</p>
-        <div class="skill-tags"><span class="stag">TensorFlow</span><span class="stag">PyTorch</span><span class="stag">CNNs</span><span class="stag">Transformers</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:80%;background:linear-gradient(90deg,var(--purple),#c4b5fd)"></div></div><div class="level-pct">80%</div></div>
-      </div>
-      <div class="skill-card cyan fade-in">
-        <div class="sk-icon-wrap cyan">⚡</div>
-        <h4>Agentic AI</h4>
-        <p>Designing autonomous LLM agents that plan, reason, use tools, and execute complex multi-step tasks intelligently.</p>
-        <div class="skill-tags"><span class="stag">LangChain</span><span class="stag">RAG</span><span class="stag">Tool Use</span><span class="stag">LLMs</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:78%;background:linear-gradient(90deg,var(--cyan),var(--blue2))"></div></div><div class="level-pct">78%</div></div>
-      </div>
-      <div class="skill-card gold fade-in">
-        <div class="sk-icon-wrap gold">🔐</div>
-        <h4>Cryptography</h4>
-        <p>Applying number theory, modular arithmetic, and algebra to encryption protocols, secure hashing, and key exchange systems.</p>
-        <div class="skill-tags"><span class="stag">RSA</span><span class="stag">AES</span><span class="stag">ECC</span><span class="stag">Hash Functions</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:82%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div><div class="level-pct">82%</div></div>
-      </div>
-      <div class="skill-card blue fade-in">
-        <div class="sk-icon-wrap blue">📊</div>
-        <h4>BI Dashboards</h4>
-        <p>Creating interactive, executive-level business intelligence dashboards that transform raw data into strategic insight.</p>
-        <div class="skill-tags"><span class="stag">Power BI</span><span class="stag">Tableau</span><span class="stag">Excel</span><span class="stag">DAX</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:85%;background:linear-gradient(90deg,var(--blue),var(--cyan))"></div></div><div class="level-pct">85%</div></div>
-      </div>
-      <div class="skill-card green fade-in">
-        <div class="sk-icon-wrap green">🎲</div>
-        <h4>Game Theory</h4>
-        <p>Expert-level understanding of strategic interaction models, Nash equilibria, mechanism design, and cooperative games.</p>
-        <div class="skill-tags"><span class="stag">Nash Eq.</span><span class="stag">Zero-Sum</span><span class="stag">Mechanism Design</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:87%;background:linear-gradient(90deg,var(--green),#6ee7b7)"></div></div><div class="level-pct">87%</div></div>
-      </div>
-      <div class="skill-card gold fade-in">
-        <div class="sk-icon-wrap gold">🔢</div>
-        <h4>MATLAB & Fuzzy Logic</h4>
-        <p>Mathematical simulation, numerical computation, and fuzzy set modelling for uncertainty quantification and control systems.</p>
-        <div class="skill-tags"><span class="stag">MATLAB</span><span class="stag">Fuzzy Sets</span><span class="stag">Simulation</span><span class="stag">Membership Fn.</span></div>
-        <div class="skill-level"><div class="level-bar"><div class="level-fill" style="width:83%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div><div class="level-pct">83%</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
 
 <!-- PROJECTS -->
 <section class="section" id="projects">
-  <div class="section-inner">
-    <div class="sec-eyebrow"><div class="sec-line"></div><div class="sec-tag">Portfolio</div></div>
-    <div class="sec-title">Featured Projects</div>
-    <p class="sec-sub">Showcasing applied mathematics, AI, and data science — where theory becomes working reality.</p>
-    <div class="projects-grid">
-      <div class="proj-card fade-in">
-        <div class="proj-banner pb1"><div class="proj-banner-icon">📈</div></div>
-        <div class="proj-body">
-          <div class="proj-label">Machine Learning · Data Analysis</div>
-          <h4>Predictive Analytics Dashboard</h4>
-          <p>End-to-end ML pipeline for time-series forecasting with a live Power BI dashboard. Combines ensemble methods, feature engineering, and real-time visualisation for business decision-making.</p>
-          <div class="proj-tags"><span class="ptag2">Python</span><span class="ptag2">Scikit-learn</span><span class="ptag2">Power BI</span><span class="ptag2">Time Series</span><span class="ptag2">Pandas</span></div>
-        </div>
-      </div>
-      <div class="proj-card fade-in">
-        <div class="proj-banner pb4"><div class="proj-banner-icon">🔐</div></div>
-        <div class="proj-body">
-          <div class="proj-label">Cryptography · Number Theory</div>
-          <h4>RSA Cryptosystem from Scratch</h4>
-          <p>Pure Python implementation of the RSA algorithm demonstrating modular exponentiation, prime factorisation, and Euler's theorem — no crypto libraries, mathematics only.</p>
-          <div class="proj-tags"><span class="ptag2">Python</span><span class="ptag2">Number Theory</span><span class="ptag2">RSA</span><span class="ptag2">Modular Arithmetic</span></div>
-        </div>
-      </div>
-      <div class="proj-card fade-in">
-        <div class="proj-banner pb2"><div class="proj-banner-icon">🎲</div></div>
-        <div class="proj-body">
-          <div class="proj-label">Game Theory · Optimisation</div>
-          <h4>Nash Equilibrium Solver</h4>
-          <p>Interactive Python tool that computes Nash equilibria in two-player strategic games using linear programming, with payoff matrix visualisation and strategy space plotting.</p>
-          <div class="proj-tags"><span class="ptag2">Python</span><span class="ptag2">SciPy</span><span class="ptag2">Game Theory</span><span class="ptag2">Matplotlib</span></div>
-        </div>
-      </div>
-      <div class="proj-card fade-in">
-        <div class="proj-banner pb3"><div class="proj-banner-icon">⚡</div></div>
-        <div class="proj-body">
-          <div class="proj-label">Agentic AI · LLMs</div>
-          <h4>Autonomous Research Agent</h4>
-          <p>LLM-powered autonomous agent that plans and executes multi-step research tasks, uses web tools, synthesises findings, and generates structured research reports independently.</p>
-          <div class="proj-tags"><span class="ptag2">LangChain</span><span class="ptag2">Python</span><span class="ptag2">RAG</span><span class="ptag2">LLM Agents</span><span class="ptag2">API</span></div>
-        </div>
-      </div>
+  <div class="title">Projects</div>
+
+  <div class="projects">
+
+    <div class="card">
+      <h3>Math GPT</h3>
+      <p>AI system that solves mathematical problems step-by-step using reasoning.</p>
     </div>
+
+    <div class="card">
+      <h3>Smart Traffic Monitoring System</h3>
+      <p>Computer vision system for traffic detection and analysis.</p>
+    </div>
+
+    <div class="card">
+      <h3>AI Medical Image Analyzer</h3>
+      <p>Deep learning system for analyzing medical scans.</p>
+    </div>
+
+    <div class="card">
+      <h3>Plant Disease Detection</h3>
+      <p>CNN model for detecting plant leaf diseases.</p>
+    </div>
+
+    <div class="card">
+      <h3>AI Skin Disease Detector</h3>
+      <p>Image classification system for skin disease detection.</p>
+    </div>
+
+    <div class="card">
+      <h3>AI Fire and Smoke Detection</h3>
+      <p>Real-time safety system using computer vision.</p>
+    </div>
+
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- SERVICES -->
-<section class="section services-section" id="services">
-  <div class="section-inner">
-    <div class="sec-eyebrow"><div class="sec-line"></div><div class="sec-tag">What I Offer</div></div>
-    <div class="sec-title">Services</div>
-    <p class="sec-sub">Mathematical precision applied to real-world problems — available for freelance, internship, and full-time roles.</p>
-    <div class="services-grid">
-      <div class="svc-card fade-in">
-        <div class="svc-glow" style="background:radial-gradient(circle,rgba(59,130,246,0.12),transparent)"></div>
-        <div class="svc-num">01</div>
-        <div class="svc-icon" style="background:rgba(59,130,246,0.15)">📊</div>
-        <h4>Data Analysis & Visualisation</h4>
-        <p>In-depth EDA, statistical analysis, and interactive dashboard creation that turns messy data into clear business intelligence.</p>
-        <a href="#contact" class="svc-link">Get Started →</a>
-      </div>
-      <div class="svc-card fade-in">
-        <div class="svc-glow" style="background:radial-gradient(circle,rgba(6,182,212,0.12),transparent)"></div>
-        <div class="svc-num">02</div>
-        <div class="svc-icon" style="background:rgba(6,182,212,0.15)">🤖</div>
-        <h4>ML Model Development</h4>
-        <p>End-to-end machine learning solutions from data preprocessing and feature engineering to model training, evaluation, and deployment.</p>
-        <a href="#contact" class="svc-link">Get Started →</a>
-      </div>
-      <div class="svc-card fade-in">
-        <div class="svc-glow" style="background:radial-gradient(circle,rgba(245,158,11,0.12),transparent)"></div>
-        <div class="svc-num">03</div>
-        <div class="svc-icon" style="background:rgba(245,158,11,0.15)">🔐</div>
-        <h4>Cryptography Consulting</h4>
-        <p>Designing and reviewing cryptographic protocols using number theory, helping secure systems and educational implementations.</p>
-        <a href="#contact" class="svc-link">Get Started →</a>
-      </div>
-      <div class="svc-card fade-in">
-        <div class="svc-glow" style="background:radial-gradient(circle,rgba(139,92,246,0.12),transparent)"></div>
-        <div class="svc-num">04</div>
-        <div class="svc-icon" style="background:rgba(139,92,246,0.15)">⚡</div>
-        <h4>AI Agent Development</h4>
-        <p>Building autonomous agentic AI systems using LLMs, RAG pipelines, and tool-use frameworks for complex automation tasks.</p>
-        <a href="#contact" class="svc-link">Get Started →</a>
-      </div>
-      <div class="svc-card fade-in">
-        <div class="svc-glow" style="background:radial-gradient(circle,rgba(16,185,129,0.12),transparent)"></div>
-        <div class="svc-num">05</div>
-        <div class="svc-icon" style="background:rgba(16,185,129,0.15)">🎲</div>
-        <h4>Mathematical Modelling</h4>
-        <p>Game-theoretic modelling, fuzzy logic systems, MATLAB simulation, and optimisation — turning real problems into solvable equations.</p>
-        <a href="#contact" class="svc-link">Get Started →</a>
-      </div>
-      <div class="svc-card fade-in">
-        <div class="svc-glow" style="background:radial-gradient(circle,rgba(59,130,246,0.12),transparent)"></div>
-        <div class="svc-num">06</div>
-        <div class="svc-icon" style="background:rgba(59,130,246,0.15)">📚</div>
-        <h4>Academic & Project Support</h4>
-        <p>Mentoring and supporting final year projects, research papers, and assignments in mathematics, data science, and AI.</p>
-        <a href="#contact" class="svc-link">Get Started →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
 
 <!-- CONTACT -->
 <section class="section" id="contact">
-  <div class="section-inner">
-    <div class="sec-eyebrow"><div class="sec-line"></div><div class="sec-tag">Get In Touch</div></div>
-    <div class="sec-title">Let's Build Something</div>
-    <div class="contact-grid">
-      <div class="contact-left fade-in">
-        <h3>Open to Opportunities & Collaborations</h3>
-        <p>Whether you need a data analyst, ML engineer, Python developer, or someone who understands the maths behind AI — I'm ready to bring precision, depth, and dedication to your team or project.</p>
-        <div class="contact-cards">
-          <div class="cc">
-            <div class="cc-icon" style="background:rgba(59,130,246,0.15)">📧</div>
-            <div><div class="cc-label">Email</div><div class="cc-val">tahzeebshah@email.com</div></div>
-          </div>
-          <div class="cc">
-            <div class="cc-icon" style="background:rgba(6,182,212,0.15)">📍</div>
-            <div><div class="cc-label">Location</div><div class="cc-val">Karachi, Pakistan</div></div>
-          </div>
-          <div class="cc">
-            <div class="cc-icon" style="background:rgba(139,92,246,0.15)">💼</div>
-            <div><div class="cc-label">LinkedIn</div><div class="cc-val">linkedin.com/in/tahzeebshah</div></div>
-          </div>
-          <div class="cc">
-            <div class="cc-icon" style="background:rgba(16,185,129,0.15)">💻</div>
-            <div><div class="cc-label">GitHub</div><div class="cc-val">github.com/tahzeebshah</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-form fade-in">
-        <div class="form-row">
-          <div class="fg"><label>Your Name</label><input type="text" placeholder="John Smith"></div>
-          <div class="fg"><label>Email</label><input type="email" placeholder="john@company.com"></div>
-        </div>
-        <div class="fg"><label>Subject</label><input type="text" placeholder="Project / Job Opportunity / Collaboration"></div>
-        <div class="fg"><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
-        <button class="submit-btn" onclick="this.textContent='Message Sent! ✓';this.style.background='linear-gradient(135deg,#10b981,#059669)'">Send Message →</button>
-      </div>
+  <div class="title">Contact</div>
+
+  <div class="contact">
+    <div>
+      <p>Email: example@gmail.com</p>
+      <p>Location: Pakistan</p>
+    </div>
+
+    <div>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Email">
+      <textarea placeholder="Message"></textarea>
+      <button>Send Message</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Muhammad Tahzeeb Shah</div>
-    <div class="footer-text">© 2024 <span>Muhammad Tahzeeb Shah</span> · Built with Mathematics & Passion · Karachi, Pakistan</div>
-    <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
+  © 2026 Muhammad Tahzeeb Shah | BS Mathematics | Pakistan
 </footer>
 
-<script>
-// ANIMATED CANVAS PARTICLES
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-let W, H;
-
-function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-class Particle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.size = Math.random() * 1.5 + 0.5;
-    this.speedX = (Math.random() - 0.5) * 0.3;
-    this.speedY = (Math.random() - 0.5) * 0.3;
-    this.opacity = Math.random() * 0.5 + 0.1;
-    this.color = Math.random() > 0.5 ? '59,130,246' : '6,182,212';
-  }
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
-    ctx.fill();
-  }
-}
-
-for (let i = 0; i < 120; i++) particles.push(new Particle());
-
-function connectParticles() {
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if (dist < 100) {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(59,130,246,${0.06 * (1 - dist/100)})`;
-        ctx.lineWidth = 0.5;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-}
-
-function animate() {
-  ctx.clearRect(0, 0, W, H);
-  particles.forEach(p => { p.update(); p.draw(); });
-  connectParticles();
-  requestAnimationFrame(animate);
-}
-animate();
-
-// TYPING EFFECT
-const phrases = [
-  'Data Analyst & Python Developer',
-  'Machine Learning Engineer',
-  'Agentic AI Specialist',
-  'Cryptography Expert',
-  'Game Theory Researcher',
-  'BI Dashboard Developer',
-  'Fuzzy Logic & MATLAB Expert'
-];
-let pIdx = 0, cIdx = 0, deleting = false;
-const typedEl = document.getElementById('typed-text');
-
-function type() {
-  const current = phrases[pIdx];
-  if (!deleting) {
-    typedEl.textContent = current.slice(0, ++cIdx);
-    if (cIdx === current.length) { deleting = true; setTimeout(type, 2000); return; }
-  } else {
-    typedEl.textContent = current.slice(0, --cIdx);
-    if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
-  }
-  setTimeout(type, deleting ? 40 : 75);
-}
-type();
-
-// SCROLL ANIMATIONS
-const faders = document.querySelectorAll('.fade-in');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-    }
-  });
-}, { threshold: 0.1 });
-faders.forEach(f => obs.observe(f));
-
-// SKILL BAR ANIMATION
-const levelFills = document.querySelectorAll('.level-fill');
-const barObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const w = e.target.style.width;
-      e.target.style.width = '0';
-      setTimeout(() => e.target.style.width = w, 200);
-    }
-  });
-}, { threshold: 0.5 });
-levelFills.forEach(f => {
-  const w = f.style.width;
-  f.style.width = '0';
-  f.style.transition = 'width 1.2s cubic-bezier(0.4,0,0.2,1)';
-  barObs.observe(f);
-});
-
-// ACTIVE NAV
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  const links = document.querySelectorAll('.nav-links a');
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
-  links.forEach(l => {
-    l.style.color = l.getAttribute('href') === '#'+current ? 'var(--blue2)' : '';
-  });
-});
-</script>
 </body>
 </html>
